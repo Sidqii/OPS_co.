@@ -7,15 +7,17 @@ class CalendarCard extends StatefulWidget {
   _CalendarCardState createState() => _CalendarCardState();
 }
 
-class _CalendarCardState extends State<CalendarCard> {
+class _CalendarCardState extends State<CalendarCard> with SingleTickerProviderStateMixin {
   DateTime _focusedDay = DateTime.now();
   DateTime? _selectedDay;
   Map<DateTime, List<String>> _events = {};
+  late AnimationController _controller;
 
   @override
   void initState() {
     super.initState();
     _initializeEvents();
+    _controller = AnimationController(vsync: this, duration: Duration(milliseconds: 300));
   }
 
   void _initializeEvents() {
@@ -102,10 +104,21 @@ class _CalendarCardState extends State<CalendarCard> {
 
     showDialog(
       context: context,
-      builder: (context) => EventDialog(
-        selectedDay: selectedDay,
-        events: events,
-      ),
+      builder: (context) {
+        return FadeTransition(
+          opacity: Tween<double>(begin: 0.0, end: 1.0).animate(
+            CurvedAnimation(
+              parent: _controller,
+              curve: Curves.easeIn,
+            ),
+          ),
+          child: EventDialog(
+            selectedDay: selectedDay,
+            events: events,
+          ),
+        );
+      },
     );
+    _controller.forward(); // Memulai animasi saat dialog muncul
   }
 }

@@ -14,11 +14,7 @@ class _ChartCardState extends State<ChartCard> {
     return Container(
       padding: const EdgeInsets.all(16.0),
       decoration: BoxDecoration(
-        gradient: LinearGradient(
-          colors: [Color(0xFF800000), Color(0xFF4B0000)],
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-        ),
+        color: Colors.white, // Background putih untuk kontras
         borderRadius: BorderRadius.circular(15),
       ),
       child: Row(
@@ -26,34 +22,34 @@ class _ChartCardState extends State<ChartCard> {
         children: [
           // Legend Section
           Padding(
-            padding: const EdgeInsets.only(left: 25.0), // Memberikan jarak di kiri
+            padding: const EdgeInsets.only(left: 25.0),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Align(
                   alignment: Alignment.centerLeft,
-                  child: _buildLegendItem('Baik', Colors.blue),
+                  child: _buildLegendItem('Baik', const Color(0xFFFF6B6B)), // Soft Red
                 ),
                 const SizedBox(height: 8),
                 Align(
                   alignment: Alignment.centerLeft,
-                  child: _buildLegendItem('Rusak Ringan', Colors.red),
+                  child: _buildLegendItem('Pemeliharaan', const Color(0xFFFFA69E)), // Peach
                 ),
                 const SizedBox(height: 8),
                 Align(
                   alignment: Alignment.centerLeft,
-                  child: _buildLegendItem('Rusak Berat', Colors.purple),
+                  child: _buildLegendItem('Rusak Berat', const Color(0xFF9B1D20)), // Deep Maroon
                 ),
               ],
             ),
           ),
-          const SizedBox(width: 16), // Spacer between legend and chart
+          const SizedBox(width: 16),
           // Chart Section
           Expanded(
             child: Center(
               child: SizedBox(
-                height: 150, // Ukuran tinggi chart yang diperkecil
+                height: 150,
                 child: PieChart(
                   PieChartData(
                     sections: _getSections(),
@@ -73,7 +69,7 @@ class _ChartCardState extends State<ChartCard> {
                       },
                     ),
                   ),
-                  swapAnimationDuration: Duration(milliseconds: 600),
+                  swapAnimationDuration: const Duration(milliseconds: 600),
                   swapAnimationCurve: Curves.easeInOut,
                 ),
               ),
@@ -87,21 +83,21 @@ class _ChartCardState extends State<ChartCard> {
   List<PieChartSectionData> _getSections() {
     return [
       PieChartSectionData(
-        color: Colors.blue,
+        color: const Color(0xFFFF6B6B), // Soft Red
         value: 45,
         title: '45%',
         radius: touchedIndex == 0 ? 60 : 50,
         titleStyle: const TextStyle(color: Colors.white, fontSize: 14),
       ),
       PieChartSectionData(
-        color: Colors.red,
+        color: const Color(0xFFFFA69E), // Peach
         value: 25,
         title: '25%',
         radius: touchedIndex == 1 ? 60 : 50,
         titleStyle: const TextStyle(color: Colors.white, fontSize: 14),
       ),
       PieChartSectionData(
-        color: Colors.purple,
+        color: const Color(0xFF9B1D20), // Deep Maroon
         value: 30,
         title: '30%',
         radius: touchedIndex == 2 ? 60 : 50,
@@ -123,7 +119,7 @@ class _ChartCardState extends State<ChartCard> {
             boxShadow: [
               BoxShadow(
                 color: Colors.black26,
-                offset: Offset(0, 1),
+                offset: const Offset(0, 1),
                 blurRadius: 2,
               ),
             ],
@@ -132,7 +128,7 @@ class _ChartCardState extends State<ChartCard> {
         const SizedBox(width: 8),
         Text(
           title,
-          style: const TextStyle(color: Colors.white, fontSize: 12),
+          style: const TextStyle(color: Colors.black87, fontSize: 12),
         ),
       ],
     );

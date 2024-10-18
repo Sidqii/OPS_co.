@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:pusdatin_apk/layout/inventory_page.dart';
+import 'package:pusdatin_apk/layout/profile_page.dart';
+import 'package:pusdatin_apk/layout/report_page.dart';
+import 'package:pusdatin_apk/layout/scan_page.dart';
 import 'package:pusdatin_apk/widgets/calendar_card.dart';
 import 'package:pusdatin_apk/widgets/chart_card.dart';
 
@@ -11,9 +15,52 @@ class _HomePageState extends State<HomePage> {
   int _selectedIndex = 0;
 
   void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
+    // Navigasi berdasarkan tab yang dipilih
+    switch (index) {
+      case 0:
+        Navigator.push(
+          context,
+          _createRoute(ScanQRPage()),
+        );
+        break;
+      case 1:
+        Navigator.push(
+          context,
+          _createRoute(InventoryPage()),
+        );
+        break;
+      case 2:
+        Navigator.push(
+          context,
+          _createRoute(ReportPage()),
+        );
+        break;
+      case 3:
+        Navigator.push(
+          context,
+          _createRoute(ProfilePage()),
+        );
+        break;
+    }
+  }
+
+  Route _createRoute(Widget page) {
+    return PageRouteBuilder(
+      pageBuilder: (context, animation, secondaryAnimation) => page,
+      transitionsBuilder: (context, animation, secondaryAnimation, child) {
+        const begin = Offset(1.0, 0.0); // Memasuki dari kanan
+        const end = Offset.zero;
+        const curve = Curves.easeInOut;
+
+        var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+        var offsetAnimation = animation.drive(tween);
+
+        return SlideTransition(
+          position: offsetAnimation,
+          child: child,
+        );
+      },
+    );
   }
 
   @override
@@ -24,9 +71,9 @@ class _HomePageState extends State<HomePage> {
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            const SizedBox(height: 20), // Menambahkan jarak dari atas layar
+            const SizedBox(height: 20),
             _buildCustomAppBar(),
-            const SizedBox(height: 25), // Jarak tambahan antara header dan kalender
+            const SizedBox(height: 25),
             CalendarCard(),
             const SizedBox(height: 20),
             ChartCard(),
@@ -53,8 +100,8 @@ class _HomePageState extends State<HomePage> {
           ),
         ],
         currentIndex: _selectedIndex,
-        selectedItemColor: const Color(0xFF800000),
-        unselectedItemColor: Colors.grey,
+        selectedItemColor: Colors.grey[400],
+        unselectedItemColor: Colors.grey[400],
         onTap: _onItemTapped,
         type: BottomNavigationBarType.fixed,
       ),
