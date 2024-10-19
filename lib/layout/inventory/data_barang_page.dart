@@ -16,6 +16,33 @@ class DataBarangPage extends StatelessWidget {
         quantity: 7,
         imagePath: 'assets/images/drone.png', // Ganti dengan path gambar yang sesuai
       ),
+      Item(
+        serialNumber: 'MDB.19SCM20.RF07',
+        brand: 'Drone',
+        status: 'Dipelihara',
+        condition: 'Rusak Ringan',
+        date: '2019-09-20',
+        quantity: 7,
+        imagePath: 'assets/images/drone.png', // Ganti dengan path gambar yang sesuai
+      ),
+      Item(
+        serialNumber: 'MDB.19SCM20.RF07',
+        brand: 'Drone',
+        status: 'Dipelihara',
+        condition: 'Rusak Ringan',
+        date: '2019-09-20',
+        quantity: 7,
+        imagePath: 'assets/images/drone.png', // Ganti dengan path gambar yang sesuai
+      ),
+      Item(
+        serialNumber: 'MDB.19SCM20.RF07',
+        brand: 'Drone',
+        status: 'Dipelihara',
+        condition: 'Rusak Ringan',
+        date: '2019-09-20',
+        quantity: 7,
+        imagePath: 'assets/images/drone.png', // Ganti dengan path gambar yang sesuai
+      ),
       // Tambahkan item lain di sini jika diperlukan
     ];
 

@@ -22,54 +22,82 @@ class DataCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      margin: EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
+      margin: EdgeInsets.all(10), // Mengatur margin di sekitar kartu
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10), // Menambahkan sudut bulat
+      ),
+      elevation: 5, // Memberikan efek bayangan
       child: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: EdgeInsets.all(15), // Mengatur padding dalam kartu
         child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            // Bagian kiri: Informasi barang
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
                     'No. Seri Barang',
-                    style: TextStyle(fontWeight: FontWeight.bold),
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12),
                   ),
-                  Text(serialNumber),
-                  SizedBox(height: 8.0),
-                  Text('Merk Barang: $brand'),
-                  Text('Status Barang: $status'),
-                  Text('Kondisi: $condition'),
-                  Text('Tanggal Masuk: $date'),
+                  SizedBox(height: 5),
+                  Text(
+                    serialNumber,
+                    style: TextStyle(fontSize: 16),
+                  ),
+                  SizedBox(height: 10),
+                  Text('Merk Barang',
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 12)),
+                  Text(brand, style: TextStyle(fontSize: 16)),
+                  SizedBox(height: 10),
+                  Text('Status Barang',
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 12)),
+                  Text(status, style: TextStyle(fontSize: 16)),
+                  SizedBox(height: 10),
+                  Text('Kondisi',
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 12)),
+                  Text(condition, style: TextStyle(fontSize: 16)),
+                  SizedBox(height: 10),
+                  Text('Tanggal Masuk',
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 12)),
+                  Text(date, style: TextStyle(fontSize: 16)),
                 ],
               ),
             ),
+            // Bagian kanan: Gambar dan jumlah barang
             Column(
               children: [
                 Image.asset(
-                  imagePath, // Ganti dengan path gambar yang sesuai
-                  width: 80,
-                  height: 80,
-                  fit: BoxFit.cover,
+                  imagePath,
+                  width: 80, // Ukuran gambar
+                  height: 140,
                 ),
-                SizedBox(height: 8.0),
+                SizedBox(height: 10),
+                Text(
+                  'Jumlah',
+                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+                ),
+                Text(
+                  '$quantity',
+                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                ),
                 Row(
                   children: [
                     IconButton(
-                      icon: Icon(Icons.remove, color: Colors.grey),
-                      onPressed: () {
-                        // Aksi untuk mengurangi jumlah barang
-                      },
+                      onPressed: () {},
+                      icon: Icon(Icons.remove),
                     ),
-                    Text('Jumlah: $quantity'),
                     IconButton(
-                      icon: Icon(Icons.add, color: Colors.grey),
-                      onPressed: () {
-                        // Aksi untuk menambah jumlah barang
-                      },
+                      onPressed: () {},
+                      icon: Icon(Icons.add),
                     ),
                   ],
-                ),
+                )
               ],
             ),
           ],

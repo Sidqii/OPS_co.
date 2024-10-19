@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pusdatin_apk/layout/inventory/data_barang_page.dart';
+import 'package:pusdatin_apk/layout/inventory/pemeliharaan_page.dart';
+import 'package:pusdatin_apk/layout/inventory/peminjaman_page.dart';
 import 'package:pusdatin_apk/widgets/appbar/custom_appbar.dart';
 import 'package:pusdatin_apk/widgets/headers/custom_header.dart';
 
@@ -48,8 +50,8 @@ class _InventoryPageState extends State<InventoryPage> with SingleTickerProvider
               controller: _tabController,
               children: [
                 DataBarangPage(),
-                //PemeliharaanBarangPage(),
-                //PeminjamanBarangPage(),
+                PemeliharaanPage(),
+                PeminjamanPage(),
               ],
             ),
           ),

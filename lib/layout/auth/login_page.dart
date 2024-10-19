@@ -121,7 +121,7 @@ class _LoginPageState extends State<LoginPage> {
               color: Colors.black.withOpacity(0.5),
               child: const Center(
                 child: SpinKitSquareCircle(
-                  color: Color(0xFFFFA69E),
+                  color: Colors.white70,
                   size: 50.0,
                 ),
               ),
