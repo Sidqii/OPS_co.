@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:pusdatin_apk/data/auth_credentials.dart';
-import 'package:pusdatin_apk/layout/home_page.dart';
-import 'package:pusdatin_apk/layout/reset_pass_page.dart';
+import 'package:pusdatin_apk/layout/home/home_page.dart';
+import 'package:pusdatin_apk/layout/auth/reset_pass_page.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -18,6 +18,14 @@ class _LoginPageState extends State<LoginPage> {
 
   bool _isPasswordVisible = false;
   bool _isLoading = false;
+  double _opacity = 1.0; // Opacity untuk efek fade
+
+  @override
+  void initState() {
+    super.initState();
+    _emailFocusNode.addListener(_onFocusChange);
+    _passwordFocusNode.addListener(_onFocusChange);
+  }
 
   @override
   void dispose() {
@@ -28,26 +36,33 @@ class _LoginPageState extends State<LoginPage> {
     super.dispose();
   }
 
+  void _onFocusChange() {
+    setState(() {}); 
+  }
+
   void _login() async {
     if (_formKey.currentState!.validate()) {
       setState(() {
-        _isLoading = true; // Tampilkan animasi loading
+        _isLoading = true; // Set loading state saat proses login
       });
 
-      await Future.delayed(const Duration(seconds: 2)); // Simulasi proses login
-
-      if (_emailController.text == AuthCredentials.email &&
-          _passwordController.text == AuthCredentials.password) {
+      // Memeriksa kredensial menggunakan AuthService
+      if (AuthService.login(_emailController.text, _passwordController.text)) {
+        // Fade out effect
         setState(() {
-          _isLoading = false; // Sembunyikan animasi loading sebelum navigasi
+          _opacity = 0.0; // Set opacity menjadi 0
         });
+
+        // Delay untuk menunggu animasi selesai sebelum navigasi
+        await Future.delayed(const Duration(seconds: 2));
+
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(builder: (context) => HomePage()),
         );
       } else {
         setState(() {
-          _isLoading = false; // Sembunyikan animasi loading jika login gagal
+          _isLoading = false; // Matikan loading state
         });
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(content: Text('Email atau password salah')),
@@ -62,37 +77,41 @@ class _LoginPageState extends State<LoginPage> {
       backgroundColor: const Color(0xFF3D0E22),
       body: Stack(
         children: [
-          Center(
-            child: SingleChildScrollView(
-              padding: const EdgeInsets.all(24.0),
-              child: Form(
-                key: _formKey,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Center(
-                      child: Image.asset(
-                        'assets/images/pusdatin.png',
-                        width: 250,
-                        height: 250,
+          AnimatedOpacity(
+            opacity: _opacity, // Mengatur opacity
+            duration: const Duration(milliseconds: 800), // Durasi fade
+            child: Center(
+              child: SingleChildScrollView(
+                padding: const EdgeInsets.all(24.0),
+                child: Form(
+                  key: _formKey,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Center(
+                        child: Image.asset(
+                          'assets/images/pusdatin.png',
+                          width: 250,
+                          height: 250,
+                        ),
                       ),
-                    ),
-                    const SizedBox(height: 0.0),
-                    const Text(
-                      'Masuk Akun',
-                      style: TextStyle(
-                        fontSize: 25.0,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
+                      const SizedBox(height: 0.0),
+                      const Text(
+                        'Masuk Akun',
+                        style: TextStyle(
+                          fontSize: 25.0,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                        ),
                       ),
-                    ),
-                    const SizedBox(height: 25.0),
-                    _buildEmailField(),
-                    const SizedBox(height: 20.0),
-                    _buildPasswordField(),
-                    const SizedBox(height: 20.0),
-                    _buildForgotPasswordLink(),
-                  ],
+                      const SizedBox(height: 25.0),
+                      _buildEmailField(),
+                      const SizedBox(height: 20.0),
+                      _buildPasswordField(),
+                      const SizedBox(height: 20.0),
+                      _buildForgotPasswordLink(),
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -102,7 +121,7 @@ class _LoginPageState extends State<LoginPage> {
               color: Colors.black.withOpacity(0.5),
               child: const Center(
                 child: SpinKitSquareCircle(
-                  color: Colors.white,
+                  color: Color(0xFFFFA69E),
                   size: 50.0,
                 ),
               ),
@@ -118,18 +137,27 @@ class _LoginPageState extends State<LoginPage> {
       focusNode: _emailFocusNode,
       decoration: InputDecoration(
         labelText: 'Email',
-        labelStyle: const TextStyle(color: Colors.white),
-        hintStyle: const TextStyle(color: Colors.white54),
+        labelStyle: TextStyle(
+          color: _emailFocusNode.hasFocus || _emailController.text.isNotEmpty
+              ? Colors.white
+              : Colors.grey,
+        ),
+        hintStyle: const TextStyle(color: Colors.grey),
         border: OutlineInputBorder(
-          borderSide: const BorderSide(color: Colors.white),
+          borderSide: const BorderSide(color: Colors.grey),
         ),
         enabledBorder: OutlineInputBorder(
-          borderSide: const BorderSide(color: Colors.white),
+          borderSide: const BorderSide(color: Colors.grey),
         ),
         focusedBorder: OutlineInputBorder(
           borderSide: const BorderSide(color: Colors.white),
         ),
-        prefixIcon: const Icon(Icons.email, color: Colors.white),
+        prefixIcon: Icon(
+          Icons.email,
+          color: _emailFocusNode.hasFocus || _emailController.text.isNotEmpty
+              ? Colors.white
+              : Colors.grey,
+        ),
       ),
       style: const TextStyle(color: Colors.white),
       keyboardType: TextInputType.emailAddress,
@@ -155,22 +183,33 @@ class _LoginPageState extends State<LoginPage> {
       focusNode: _passwordFocusNode,
       decoration: InputDecoration(
         labelText: 'Password',
-        labelStyle: const TextStyle(color: Colors.white),
-        hintStyle: const TextStyle(color: Colors.white54),
+        labelStyle: TextStyle(
+          color: _passwordFocusNode.hasFocus || _passwordController.text.isNotEmpty
+              ? Colors.white
+              : Colors.grey,
+        ),
+        hintStyle: const TextStyle(color: Colors.grey),
         border: OutlineInputBorder(
-          borderSide: const BorderSide(color: Colors.white),
+          borderSide: const BorderSide(color: Colors.grey),
         ),
         enabledBorder: OutlineInputBorder(
-          borderSide: const BorderSide(color: Colors.white),
+          borderSide: const BorderSide(color: Colors.grey),
         ),
         focusedBorder: OutlineInputBorder(
           borderSide: const BorderSide(color: Colors.white),
         ),
-        prefixIcon: const Icon(Icons.lock, color: Colors.white),
+        prefixIcon: Icon(
+          Icons.lock,
+          color: _passwordFocusNode.hasFocus || _passwordController.text.isNotEmpty
+              ? Colors.white
+              : Colors.grey,
+        ),
         suffixIcon: IconButton(
           icon: Icon(
             _isPasswordVisible ? Icons.visibility : Icons.visibility_off,
-            color: Colors.white,
+            color: _passwordFocusNode.hasFocus || _passwordController.text.isNotEmpty
+                ? Colors.white
+                : Colors.grey,
           ),
           onPressed: () {
             setState(() {

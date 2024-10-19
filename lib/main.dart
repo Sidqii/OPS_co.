@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:pusdatin_apk/layout/login_page.dart';
-import 'package:pusdatin_apk/widgets/splash_screen.dart';
+import 'package:pusdatin_apk/layout/inventory/inventory_page.dart';
+import 'package:pusdatin_apk/layout/auth/login_page.dart';
+import 'package:pusdatin_apk/layout/home/splash_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -12,18 +13,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Pusdatin App',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
-        inputDecorationTheme: InputDecorationTheme(
-          enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.white70)
-          ),
-          focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.white70)
-          ),
-          border: OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.white70)
-          ) 
-        )
+        primarySwatch: Colors.blue, // Warna utama aplikasi
+        textSelectionTheme: TextSelectionThemeData(
+          cursorColor: Colors.white, // Mengubah warna kursor menjadi putih
+        ),
       ),
       home: SplashScreenPage(),
     );
@@ -42,7 +35,7 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
     _navigateToHome();
   }
 
-  //navigasi splash_screen
+  // Navigasi splash_screen
   _navigateToHome() async {
     await Future.delayed(Duration(seconds: 3), () {});
     Navigator.pushReplacement(

@@ -8,7 +8,7 @@ class ReportPage extends StatelessWidget {
         title: Text('Report'),
       ),
       body: Center(
-        child: Text('Ini adalah halaman Report'),
+        child: Text('Laman dalam pengembangan'),
       ),
     );
   }

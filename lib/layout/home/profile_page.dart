@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 
-class ScanQRPage extends StatelessWidget {
+class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Scan QR'),
+        title: Text('Profil'),
       ),
       body: Center(
-        child: Text('Ini adalah halaman Scan QR'),
+        child: Text('Laman dalam pengembangan'),
       ),
     );
   }

@@ -29,7 +29,7 @@ class _ChartCardState extends State<ChartCard> {
               children: [
                 Align(
                   alignment: Alignment.centerLeft,
-                  child: _buildLegendItem('Baik', const Color(0xFFFF6B6B)), // Soft Red
+                  child: _buildLegendItem('Kondisi Baik', const Color(0xFFFF6B6B)), // Soft Red
                 ),
                 const SizedBox(height: 8),
                 Align(

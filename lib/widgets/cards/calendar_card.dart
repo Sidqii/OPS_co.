@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
-import 'event_dialog.dart'; // Impor EventDialog
+import '../dialogs/event_dialog.dart'; // Impor EventDialog
 
 class CalendarCard extends StatefulWidget {
   @override
