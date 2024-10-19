@@ -79,7 +79,7 @@ class _LoginPageState extends State<LoginPage> {
         children: [
           AnimatedOpacity(
             opacity: _opacity, // Mengatur opacity
-            duration: const Duration(milliseconds: 800), // Durasi fade
+            duration: const Duration(milliseconds: 600), // Durasi fade
             child: Center(
               child: SingleChildScrollView(
                 padding: const EdgeInsets.all(24.0),

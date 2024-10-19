@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:pusdatin_apk/layout/inventory/inventory_page.dart';
 import 'package:pusdatin_apk/layout/auth/login_page.dart';
 import 'package:pusdatin_apk/layout/home/splash_screen.dart';
 
@@ -13,9 +12,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Pusdatin App',
       theme: ThemeData(
-        primarySwatch: Colors.blue, // Warna utama aplikasi
+        primarySwatch: Colors.blue,
         textSelectionTheme: TextSelectionThemeData(
-          cursorColor: Colors.white, // Mengubah warna kursor menjadi putih
+          cursorColor: Colors.white,
         ),
       ),
       home: SplashScreenPage(),
