@@ -14,7 +14,7 @@ class _ChartCardState extends State<ChartCard> {
     return Container(
       padding: const EdgeInsets.all(16.0),
       decoration: BoxDecoration(
-        color: Colors.white, // Background putih untuk kontras
+        color: Colors.white,
         borderRadius: BorderRadius.circular(15),
       ),
       child: Row(
@@ -29,17 +29,17 @@ class _ChartCardState extends State<ChartCard> {
               children: [
                 Align(
                   alignment: Alignment.centerLeft,
-                  child: _buildLegendItem('Kondisi Baik', const Color(0xFFFF6B6B)), // Soft Red
+                  child: _buildLegendItem('Kondisi Baik', const Color(0xFFFF6B6B)),
                 ),
                 const SizedBox(height: 8),
                 Align(
                   alignment: Alignment.centerLeft,
-                  child: _buildLegendItem('Pemeliharaan', const Color(0xFFFFA69E)), // Peach
+                  child: _buildLegendItem('Pemeliharaan', const Color(0xFFFFA69E)),
                 ),
                 const SizedBox(height: 8),
                 Align(
                   alignment: Alignment.centerLeft,
-                  child: _buildLegendItem('Rusak Berat', const Color(0xFF9B1D20)), // Deep Maroon
+                  child: _buildLegendItem('Rusak Berat', const Color(0xFF9B1D20)),
                 ),
               ],
             ),
@@ -62,15 +62,20 @@ class _ChartCardState extends State<ChartCard> {
                               pieTouchResponse.touchedSection != null) {
                             touchedIndex = pieTouchResponse
                                 .touchedSection!.touchedSectionIndex;
-                          } else {
-                            touchedIndex = -1;
+
+                            // Mengatur kembali touchedIndex menjadi -1 setelah 1 detik
+                            Future.delayed(const Duration(seconds: 1), () {
+                              setState(() {
+                                touchedIndex = -1;
+                              });
+                            });
                           }
                         });
                       },
                     ),
                   ),
-                  swapAnimationDuration: const Duration(milliseconds: 600),
-                  swapAnimationCurve: Curves.easeInOut,
+                  swapAnimationDuration: const Duration(milliseconds: 800),
+                  swapAnimationCurve: Curves.bounceOut,
                 ),
               ),
             ),
@@ -82,28 +87,41 @@ class _ChartCardState extends State<ChartCard> {
 
   List<PieChartSectionData> _getSections() {
     return [
-      PieChartSectionData(
-        color: const Color(0xFFFF6B6B), // Soft Red
+      _buildAnimatedSection(
+        index: 0,
         value: 45,
-        title: '45%',
-        radius: touchedIndex == 0 ? 60 : 50,
-        titleStyle: const TextStyle(color: Colors.white, fontSize: 14),
+        color: const Color(0xFFFF6B6B),
+        touchedColor: const Color(0xFFE63946),
       ),
-      PieChartSectionData(
-        color: const Color(0xFFFFA69E), // Peach
+      _buildAnimatedSection(
+        index: 1,
         value: 25,
-        title: '25%',
-        radius: touchedIndex == 1 ? 60 : 50,
-        titleStyle: const TextStyle(color: Colors.white, fontSize: 14),
+        color: const Color(0xFFFFA69E),
+        touchedColor: const Color(0xFFF77F69),
       ),
-      PieChartSectionData(
-        color: const Color(0xFF9B1D20), // Deep Maroon
+      _buildAnimatedSection(
+        index: 2,
         value: 30,
-        title: '30%',
-        radius: touchedIndex == 2 ? 60 : 50,
-        titleStyle: const TextStyle(color: Colors.white, fontSize: 14),
+        color: const Color(0xFF9B1D20),
+        touchedColor: const Color(0xFF7F0A0E),
       ),
     ];
+  }
+
+  PieChartSectionData _buildAnimatedSection({
+    required int index,
+    required double value,
+    required Color color,
+    required Color touchedColor,
+  }) {
+    // Gunakan TweenAnimationBuilder untuk animasi perubahan warna
+    return PieChartSectionData(
+      color: touchedIndex == index ? touchedColor : color,
+      value: value,
+      title: '${value.toInt()}%',
+      radius: touchedIndex == index ? 60 : 50,
+      titleStyle: const TextStyle(color: Colors.white, fontSize: 14),
+    );
   }
 
   Widget _buildLegendItem(String title, Color color) {

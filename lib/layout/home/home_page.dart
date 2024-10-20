@@ -71,9 +71,9 @@ class _HomePageState extends State<HomePage> {
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            const SizedBox(height: 20),
+            const SizedBox(height: 40),
             _buildCustomAppBar(),
-            const SizedBox(height: 25),
+            const SizedBox(height: 20),
             CalendarCard(),
             const SizedBox(height: 20),
             ChartCard(),
