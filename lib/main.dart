@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:pusdatin_apk/layout/auth/login_page.dart';
-import 'package:pusdatin_apk/layout/home/splash_screen.dart';
+import 'package:pusdatin_apk/pages/first_page/page_login.dart';
+import 'package:pusdatin_apk/pages/first_page/page_loading.dart';
 
 void main() {
   runApp(MyApp());

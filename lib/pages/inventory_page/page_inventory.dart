@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:pusdatin_apk/layout/inventory/data_barang_page.dart';
-import 'package:pusdatin_apk/layout/inventory/pemeliharaan_page.dart';
-import 'package:pusdatin_apk/layout/inventory/peminjaman_page.dart';
-import 'package:pusdatin_apk/widgets/appbar/custom_appbar.dart';
-import 'package:pusdatin_apk/widgets/headers/custom_header.dart';
+import 'package:pusdatin_apk/pages/inventory_page/page_item.dart';
+import 'package:pusdatin_apk/pages/inventory_page/page_pemeliharaan.dart';
+import 'package:pusdatin_apk/pages/inventory_page/page_peminjaman.dart';
+import 'package:pusdatin_apk/widgets/appbar/cust_appbar.dart';
+import 'package:pusdatin_apk/widgets/headers/inventaris_header.dart';
 
 class InventoryPage extends StatefulWidget {
   @override

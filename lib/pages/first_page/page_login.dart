@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:pusdatin_apk/data/auth_credentials.dart';
-import 'package:pusdatin_apk/layout/home/home_page.dart';
-import 'package:pusdatin_apk/layout/auth/reset_pass_page.dart';
+import 'package:pusdatin_apk/dummy/auth_credentials.dart';
+import 'package:pusdatin_apk/pages/home_page/page_home.dart';
+import 'package:pusdatin_apk/pages/first_page/page_recovery.dart';
 
 class LoginPage extends StatefulWidget {
   @override

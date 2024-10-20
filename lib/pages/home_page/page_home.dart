@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:pusdatin_apk/layout/inventory/inventory_page.dart';
-import 'package:pusdatin_apk/layout/home/profile_page.dart';
-import 'package:pusdatin_apk/layout/home/report_page.dart';
-import 'package:pusdatin_apk/layout/home/scan_page.dart';
-import 'package:pusdatin_apk/widgets/cards/calendar_card.dart';
-import 'package:pusdatin_apk/widgets/cards/chart_card.dart';
+import 'package:pusdatin_apk/pages/inventory_page/page_inventory.dart';
+import 'package:pusdatin_apk/pages/home_page/page_profile.dart';
+import 'package:pusdatin_apk/pages/home_page/page_report.dart';
+import 'package:pusdatin_apk/pages/home_page/page_qr.dart';
+import 'package:pusdatin_apk/widgets/card/calendar/calendar_card.dart';
+import 'package:pusdatin_apk/widgets/card/chart/chart_card.dart';
 
 class HomePage extends StatefulWidget {
   @override

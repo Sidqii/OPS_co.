@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:pusdatin_apk/data/item.dart';
-import 'package:pusdatin_apk/widgets/cards/data_card.dart';
+import 'package:pusdatin_apk/models/item_models.dart';
+import 'package:pusdatin_apk/widgets/inventory/item_card.dart';
 
 class DataBarangPage extends StatelessWidget {
   @override
