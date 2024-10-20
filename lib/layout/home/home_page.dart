@@ -3,8 +3,8 @@ import 'package:pusdatin_apk/layout/inventory/inventory_page.dart';
 import 'package:pusdatin_apk/layout/home/profile_page.dart';
 import 'package:pusdatin_apk/layout/home/report_page.dart';
 import 'package:pusdatin_apk/layout/home/scan_page.dart';
-import 'package:pusdatin_apk/widgets/cards/calendar_card.dart';
-import 'package:pusdatin_apk/widgets/cards/chart_card.dart';
+import 'package:pusdatin_apk/widgets/calendar/calendar_card.dart';
+import 'package:pusdatin_apk/widgets/chart/chart_card.dart';
 
 class HomePage extends StatefulWidget {
   @override

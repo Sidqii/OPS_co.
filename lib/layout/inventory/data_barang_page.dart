@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pusdatin_apk/data/item.dart';
-import 'package:pusdatin_apk/widgets/cards/data_card.dart';
+import 'package:pusdatin_apk/data/data_barang_card.dart';
 
 class DataBarangPage extends StatelessWidget {
   @override
