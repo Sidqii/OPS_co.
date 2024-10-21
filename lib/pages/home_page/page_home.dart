@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:pusdatin_apk/pages/inventory_page/page_inventory.dart';
 import 'package:pusdatin_apk/pages/home_page/page_profile.dart';
-import 'package:pusdatin_apk/pages/home_page/page_report.dart';
 import 'package:pusdatin_apk/pages/home_page/page_qr.dart';
+import 'package:pusdatin_apk/pages/home_page/page_report.dart';
+import 'package:pusdatin_apk/pages/inventory_page/page_inventory.dart';
 import 'package:pusdatin_apk/widgets/card/calendar/calendar_card.dart';
 import 'package:pusdatin_apk/widgets/card/chart/chart_card.dart';
 
